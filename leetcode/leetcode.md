@@ -24,9 +24,23 @@
     题目要求在一个string中查找其是否能由vector中的字符串组成。<br/>
 dp的主要思路就是找一个数组存储中间值，然后根据状态方程一步一步推倒，此题状态方程为dp[i]={dp[i-str.size()],dp[0]=true,},遍历每一个vector中的元素找是否满足条件的
 ---
+(152) Maximum Product Subarray
+    题目要求在数组中找到一个连续子数组使得子数组内元素乘积最大，考虑负数情况。这题有一个巧妙的方法，O(n)复杂度，用minnumber存储负数最小值，maxnumber存储正数最大值，当遍历过程中是遇到负数，则交换两个值。
+---
 （221）Maximal Square
     题目要求在一个01矩阵中找到1组成的最大正方形。dp[i][j]表示以matrix[i][j]为右下角的1方阵大小，状态方程dp[i][j]=min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])+1 (if(matrix[i][j]='1'))
-
+---
+(279) Perfect Squares
+    题目要求输入正整数n，输出最少个数可以相加得到n的完全平方数（1,4,9,16）
+    首先，要将n以下的完全平方数存在一个数组中square，对于每个i，遍历square
+    dp[i]=min(dp[i],dp[i-square[j]]+1) (i>square[j])
+---
+（300）Longest Increasing Subsequence
+    输入没有排序的数组，输出最长递增子序列（子序列可以不连续）。
+    dp[i]=max(dp[i],dp[j]+1) (if nums[i]>nums[j])
+---
+（494）Target Sum
+    这道题目经常会有类似的题目，如钟表走指针，需要理解方法并举一反三
 8. 排序相关
 
 (147) Insert Sort List
