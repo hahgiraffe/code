@@ -1,3 +1,8 @@
+<!--
+ * @Description: leetcode刷题记录
+ * @Author: haha_giraffe
+ * @Date: 2019-08-14 10:12:35
+ -->
 # leetcode 刷题记录
   本笔记用于记录leetcode刷题的想法，用于总结和回顾，根据类型进行分，相同类型依照题号排列
 ---
@@ -7,7 +12,11 @@
 2. 二叉树
 
 3. 字符串
-
+（131） Palindrome Partitioning
+    给定一个字符串，分割其每个子串为一个回文字符串。回溯法暴力搜索，从头往后遍历字符串，如果找到一个是回文，则dfs继续后面的，注意substr是[begin,end)
+（132） Palindrome Partitioning II
+    求能分割成的子回文字符串，最少切的刀数，如果按照131的方法会超时，所以只能用两个dp，第一个dp[i][j]判断字符串str(i,j)是否为回文，dp[i][j]=(s[i]==s[j]) && dp[i+1]dp[j-1]
+    第二个dp f[n]表示前n个字符中，最少可以分割几个回文子串 如果dp[k][n-1]是回文，则f[n]=max(f[n],f[n-k]+1)
 4. 链表
 
 (82)/(83) Remove Duplicates from Sorted List
@@ -21,6 +30,23 @@
     N皇后是非常经典的题目，题目要求在棋盘上放置皇后，横竖斜都不相邻，主要思想是dfs，用一个vector arr存储第n行的皇后位于arr[n]列，递归返回条件是arr.size() == n ,如果满足条件则找到一个，如果没有达到条件则继续尝试。
 
 7. 动态规划（DP）
+（000） 01背包问题
+    有n个背包，每个背包有weight和value，且只能选一次在给定的W下，求最大的V，dp[i][j]表示在前i个物品背包容量j的情况下最大的价值,每个背包有两个状态，取或者不取
+    状态方程 dp[i][j]=max(dp[i-1][j],dp[i-1][j-weight[i]]+value[i]);(当j>weight[i]时，如果小于直接dp[i][j]=dp[i-1][j])
+（000） 完全背包问题
+
+---
+(115) Distinct Subsequences(hard)
+    题目要求在一个字符串S中数有多少个不同的子序列T，状态方程dp[i][j]表示s中的前i个字符与T中的前j个字符子序列的个数，
+    如果S[i-1]==T[j-1] 则dp[i][j]=dp[i-1][j] (表示s[i-1]不匹配T[j-1]) + dp[i-1][j-1] （表示s[i-1]匹配T[j-1]）
+---
+（121） Best Time to Buy andd Sell Stock I
+    题目要求只能买卖一次利润最大化，对于每个值，找到之前的最小值，存储他们的差值，然后再次遍历得到差值的最大值
+（122） Best Time to Buy andd Sell Stock II
+    题目要求可以买无限次，所以，如果num[i]>num[i-1]则res+=num[i]-num[i-1];
+（123） Best Time to Buy andd Sell Stock III（hard）
+    题目要求只能买卖最多两次，对于每个点，分别求出左区间的最大利润（从前往后遍历，更新最小值），和右区间的最大利润（从后往前遍历，更新最大值），最后在遍历一次取两者之和的最大值
+---
 (139) Word Break
     题目要求在一个string中查找其是否能由vector中的字符串组成。<br/>
 dp的主要思路就是找一个数组存储中间值，然后根据状态方程一步一步推倒，此题状态方程为dp[i]={dp[i-str.size()],dp[0]=true,},遍历每一个vector中的元素找是否满足条件的
@@ -40,6 +66,8 @@ dp的主要思路就是找一个数组存储中间值，然后根据状态方程
     输入没有排序的数组，输出最长递增子序列（子序列可以不连续）。
     dp[i]=max(dp[i],dp[j]+1) (if nums[i]>nums[j])
 ---
+（416） Partition Equal Subset Sum(01背包的变形)
+    一个数组是否可以分成两个集合，让这两个集合成员之和相同，dp[i][j]表示前i个数在和为j的情况下是否可以，状态方程和01背包类似
 （494）Target Sum
     这道题目经常会有类似的题目，如钟表走指针，需要理解方法并举一反三
 8. 排序相关
