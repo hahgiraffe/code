@@ -6,6 +6,10 @@
  * 因为 nums[0] + nums[1] = 2 + 7 = 9
  * 所以返回 [0, 1]
  */
+
+/* 
+    解题思路：用一个map存储old_value(new_value), old_index
+*/
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {

@@ -7,6 +7,11 @@
  * 输出：7 -> 0 -> 8
  * 原因：342 + 465 = 807
  */
+
+
+/* 
+    解题思路：这个就是双指针移动相加，注意进位就好（如果反过来的话，就要先链表翻转）
+*/
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {

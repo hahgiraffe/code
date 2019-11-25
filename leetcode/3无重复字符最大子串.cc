@@ -7,6 +7,10 @@
  * 输出: 3 
  * 解释: 因为无重复字符的最长子串是 "abc"，所以其长度为 3。
  */
+
+/* 
+    解题思路：双指针，如果两个指针之间没有重复字符，则右指针右移（同时记录对比result最大值），如果有则左指针右移，
+*/
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {

@@ -18,7 +18,7 @@
 ## 二叉树
 ### （236） Lowest Common Ancestor of a Binary Tree（重要）
     这道题用的是最简单的后序遍历dfs，递归返回TreeNode*,如果找到则返回，如果没有找到返回NULL
-  ```cpp
+```cpp
       TreeNode* dfs(TreeNode* root,TreeNode* p,TreeNode* q){
         if(!root){
             return NULL;
@@ -35,7 +35,7 @@
             return l;
         }
         else if(r){
-            return;Verify Preorder Serialization of a Binary Tree
+            return r;
         }
         else{
             return NULL;
@@ -59,7 +59,6 @@
     将一组整数组成最大的数，首先要将int转换成string，然后sort，根据每两个string比较，连接后是否更大
 
 ## 链表
-
 ### (82)/(83) Remove Duplicates from Sorted List
     在排序好的链表中删除重复的数字，82是保留一个，83是重复数字不保留,基本思路都是双指针，83再加一个set用来存储重复的数字即可，然后再遍历一遍删除即可。
 ### （234）Palindrome Linked List

@@ -8,8 +8,8 @@
  */
 
 /*
- 这题目要注意一点就是，len的开始值为3，是为了最后s.str()里面的参数，所以right要为left+len-1
- 还有就是这里的dp可以直接为bool，表示dp[i][j]是否为回文
+    题目解析：经典dp，这题目要注意一点就是，len的开始值为3，是为了最后s.str()里面的参数，所以right要为left+len-1
+    还有就是这里的dp可以直接为bool，表示dp[i][j]是否为回文
  */
 class Solution {
 public:
