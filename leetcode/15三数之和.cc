@@ -25,7 +25,7 @@ public:
             int target = -nums[i];
             int b=i+1;
             int e=nums.size()-1;
-            if(i>0 && nums[i]==nums[i-1]){
+            if(i>0 && nums[i]==nums[i-1]){  //注意左元素要去重
                 continue;
             }
             while(b<e){
@@ -36,8 +36,8 @@ public:
                     e--;
                 }
                 else{
-                    ans.push_back({nums[i],nums[b],nums[e]});
-                    while(b<e && nums[b]==nums[b+1]) b++;
+                    ans.push_back({nums[i],nums[b],nums[e]});   
+                    while(b<e && nums[b]==nums[b+1]) b++;       //这里要左右指针移动时候去重
                     while(b<e && nums[e]==nums[e-1]) e--;
                     b++;
                     e--;
