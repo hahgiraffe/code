@@ -1,3 +1,8 @@
+/*
+ * @Author: haha_giraffe
+ * @Date: 2020-03-09 19:33:33
+ * @Description: 
+ */
 #include <vector>
 #include <iostream>
 using namespace std;
@@ -37,7 +42,16 @@ bool VerifySquenceOfBST(vector<int> sequence) {
     return res;
 }
 
+class myclas{
+public:
+    myclas(int a) : m_a(a){ }
+
+private:
+    const int m_a;
+}
+
 int main(){
+    const int a = 2;
     vector<int> abs{5,7,6,9,11,10,8};
     cout<<VerifySquenceOfBST(abs);
 }

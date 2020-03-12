@@ -3,74 +3,72 @@
  * @Date: 2020-03-06 11:39:52
  * @Description: 
  */
-#include <queue>
+
+/* 
+    堆排序，重点
+*/
+#include <vector>
 #include <iostream>
 
-// void heapsort(std::vector<int>& vec){
-//     std::priority_queue<int, std::vector<int>, std::greater<int>> pq;
-//     for(auto a : vec){
-//         pq.push(a);
-//     }
-//     std::vector<int> res;
-//     while(!pq.empty()){
-//         int tmp = pq.top();
-//         pq.pop();
-//         res.push_back(tmp);
-//     }
-//     vec.swap(res);
-// }
+using namespace std;
 
-#define left(index) ((index) * 2 + 1)
-#define right(index) ((index) * 2 + 2)
+#define left(l) (2 * (l) + 1)
+#define right(r) (2 * (r) + 2)
 
 void swap(int& a, int& b){
-    int t = a;
+    int tmp = a;
     a = b;
-    b = t;
+    b = tmp;
 }
 
-void adjustheap(std::vector<int>& vec, int i , int len){
-    int index = i;
-    int value = vec[i];
-    if(left(i) < len){
-        if(vec[left(i)] > vec[index]){
-            index = left(i);
-            value = vec[left(i)];
+void heap_adjust(std::vector<int>& vec, int index, int len){
+    int idx = index;
+    int val = vec[index];
+
+    if(left(index) < len){
+        if(vec[left(index)] > val){
+            idx = left(index);
+            val = vec[left(index)];
         }
     }
 
-    if(right(i) < len){
-        if(vec[right(i)] > vec[index]){
-            index = right(i);
-            value = vec[right(i)];
+    if(right(index) < len){
+        if(vec[right(index)] > val){
+            idx = right(index);
+            val = vec[right(index)];
         }
     }
 
-    if(value != vec[i]){
-        swap(vec[i], vec[index]);
-        adjustheap(vec, index, len);
+    if(val != vec[index]){
+        swap(vec[index], vec[idx]);
+        heap_adjust(vec, idx, len);
     }
 }
 
-
-void heapsort(std::vector<int>& vec){
-    for(int i = vec.size() / 2 - 1; i >= 0; --i){
-        adjustheap(vec, i, vec.size());
+void heap_sort(std::vector<int>& vec){
+    //建立堆
+    int n = vec.size();
+    for(int i = n / 2 -1; i >= 0; --i){
+        heap_adjust(vec, i, n);
     }
 
-    for(int i = vec.size() - 1; i >= 0; --i){
-        swap(vec[0], vec[i]);
-        adjustheap(vec, 0, i);
+    //调整堆
+    int tmp = n-1;
+    while(tmp > 0){
+        swap(vec[tmp], vec[0]);
+        heap_adjust(vec, 0, tmp);
+        tmp--;
     }
+
 }
 
 int main(){
-    // std::vector<int> vec{2,4,6,1,56,1,6};
-    std::vector<int> vec{38,55,65,97,27,76};
-    heapsort(vec);
+    std::vector<int> vec{2,4,6,44,2,1,55,6,7,43,2,1,45,6,3246};
+    heap_sort(vec);
+
     for(auto a : vec){
-        std::cout << a << " ";
+        cout << a << " ";
     }
-    std::cout << std::endl;
-    return 0;
+    // cout <<"sdasda";
+    cout << endl;
 }

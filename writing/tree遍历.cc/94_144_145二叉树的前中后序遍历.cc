@@ -138,3 +138,34 @@ public:
         return res;
     }
 };
+
+//后序还有一个最好的方法，就是将前序的left和right调换，然后最后再reverse一次就好了
+//记下这个，这个是最简单的后序方法
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+        if(!root) return res;
+        stack<TreeNode*> s;
+        s.push(root);
+        res.push_back(root->val);
+        while(!s.empty()){
+            while(root->right){
+                root = root->right;
+                s.push(root);
+                res.push_back(root->val);
+            }
+            if(!s.empty()){
+                TreeNode* tmp = s.top();
+                s.pop();
+                if(tmp->left){
+                    s.push(tmp->left);
+                    res.push_back(tmp->left->val);
+                    root = tmp->left;
+                }
+            }
+        }
+        reverse(res.begin(),res.end());
+        return res;
+    }
+};
