@@ -3,6 +3,9 @@
  * @Date: 2020-02-21 23:20:01
  * @Description: 
  */
+/* 
+    顺时针打印，记下这个
+*/
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
@@ -12,34 +15,28 @@ public:
         int n = matrix.size();
         int m = matrix[0].size();
         vector<int> res;
-        int k = 0;
-        while(true){
-            int sz = res.size();
-            for(int i = k; i < m - k; ++i){
-                res.push_back(matrix[k][i]);
+        int u = 0, d = n-1, l = 0, r = m-1;
+        while(1){
+            for(int i = l; i <= r; ++i){
+                res.push_back(matrix[u][i]);
             }
-            if(res.size() == n * m){
-                break;
+            u++;
+            if(u > d) break;
+            for(int i = u; i <= d; ++i){
+                res.push_back(matrix[i][r]);
             }
-            for(int i = 1 + k; i < n - 1 - k; ++i){
-                res.push_back(matrix[i][m-1-k]);
+            r--;
+            if(r < l) break;
+            for(int i = r; i >= l; --i){
+                res.push_back(matrix[d][i]);
             }
-            if(res.size() == n * m){
-                break;
+            d--;
+            if(d < u) break;
+            for(int i = d; i >= u; --i){
+                res.push_back(matrix[i][l]);
             }
-            for(int i = m-1-k; i >= k; --i){
-                res.push_back(matrix[n-1-k][i]);
-            }
-            if(res.size() == n * m){
-                break;
-            }
-            for(int i = n-2-k; i> k; --i){
-                res.push_back(matrix[i][k]);
-            }
-            if(res.size() == n * m){
-                break;
-            }
-            k++;
+            l++;
+            if(l > r) break;
         }
         return res;
     }

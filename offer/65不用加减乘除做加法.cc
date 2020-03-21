@@ -19,3 +19,16 @@ public:
         return b;
     }
 };
+
+/* 
+    如何实现减法呢,其实可以用上面的加法,但是一开始在前面加上负数即可
+*/
+
+int OpposeNumber(int n){
+    //整数的相反数即为按位取反,最后加1
+    return add(~n, 1);
+}
+
+int Substract(int a, int b){
+    return add(a, OpposeNumber(b));
+}
