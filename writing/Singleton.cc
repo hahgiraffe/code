@@ -21,6 +21,28 @@ public:
     }
 };
 
+//懒汉模式：静态成员变量
+class Singleton_4{
+private:
+    Singleton_4(){}
+    ~Singleton_4(){}
+    Singleton_4(const Singleton_4&) = delete;
+    const Singleton_4& operator = (const Singleton_4&) = delete;
+
+private:
+    static Singleton_4* instance;
+
+public:
+    static Singleton_4* GetInstance(){
+        if(!instance){
+            instance = new Singleton_4();
+        }
+        return instance;
+    }
+};
+
+Singleton_4* Singleton_4::instance = nullptr;
+
 /* 
     饿汉模式，程序一开始就初始化单例
 */

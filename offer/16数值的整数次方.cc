@@ -45,3 +45,25 @@ public:
         return res;
     }
 };
+
+/* 
+这个快速幂的方法更加容易，且不用处理INT_MIN等问题
+class Solution {
+public:
+    double myPow(double x, int n) {
+        if(n == 0 || x == 1) return 1;
+        double res = 1;
+        long long N = n;
+        if(n < 0){
+            N = -N;
+            x = 1.0 / x;
+        }
+        while(N){
+            if(N & 1) res *= x;
+            N >>= 1;
+            x *= x;
+        }
+        return res;
+    }
+};
+*/

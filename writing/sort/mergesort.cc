@@ -41,7 +41,7 @@ void mergesort(vector<int>& res,vector<int>& vec,int begin,int end){
     return;
 }
 int main(){
-    vector<int> arr{32,44,12,41,513,1,23,4,5,22,15};
+    vector<int> arr{32,44,12,23,41,513,1,23,4,5,22,23,15};
     vector<int> res(arr);
     mergesort(res,arr,0,arr.size()-1);
     for(auto a:res){

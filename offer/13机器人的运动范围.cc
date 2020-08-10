@@ -48,3 +48,42 @@ public:
         return res;
     }
 };
+/* 
+这个逻辑更加清晰
+class Solution {
+public:
+    int dx[4] = {1, 0, 0, -1};
+    int dy[4] = {0, 1, -1, 0};
+    int getValue(int k){
+        int res = 0;
+        while(k){
+            res += k % 10;
+            k = k / 10;
+        }
+        return res;
+    }
+    void dfs(int m, int n, int k, int i, int j, int& res, vector<vector<bool>>& gone){
+        if(i < 0 || i >= m || j < 0 || j >= n || gone[i][j]){
+            return;
+        }
+        if(getValue(i) + getValue(j) > k){
+            return;
+        }
+        gone[i][j] = true;
+        res++;
+        printf("%d, %d\n", i, j);
+        for(int tmpk = 0; tmpk < 4; ++tmpk){
+            int tmpi = i + dx[tmpk];
+            int tmpj = j + dy[tmpk];
+            dfs(m, n, k, tmpi, tmpj, res, gone);
+        }
+        return;
+    }
+    int movingCount(int m, int n, int k) {
+        vector<vector<bool>> gone(m, vector<bool>(n, false));
+        int res = 0;
+        dfs(m, n, k, 0, 0, res, gone);
+        return res;
+    }
+};
+*/

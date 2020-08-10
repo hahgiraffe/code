@@ -58,3 +58,46 @@ int main(){
     Shared_ptr<int> ptr3(new int(44));
     ptr3 = ptr;
 }
+
+
+template<typename T>
+class MySharedPtr{
+public:
+    MyShreadPtr():ptr(NULL), count(new int(0)){}
+    explicit MySharedPtr(T* prr): ptr(ptr), count(new int(1)){}
+    MySharedPtr(const MySharedPtr& sptr) : ptr(sptr.ptr), count(sptr.count){
+        (*sptr.count)++
+    }
+    MySharedPtr& operator = (const MySharedPtr& sptr){
+        if(this == &sptr){
+            return *this;
+        }
+        (*sptr.count)++;
+        if(--(*count) == 0){
+            delete ptr;
+            delete count;
+        }
+        this->ptr = sptr.ptr;
+        this->count = sptr.count;
+        return *this;
+    }
+    ~MySharedPtr(){
+        --(*count)
+        if(*count == 0){
+            delete ptr;
+            delete count;
+        }
+        ptr = NULL;
+        count = NULL;
+    }
+
+    int getReferenceCount() const {
+        return *count;
+    }
+
+private:
+    T* ptr;
+    int* count;
+};
+
+

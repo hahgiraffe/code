@@ -40,3 +40,31 @@ public:
         return res;
     }
 };
+
+/* 
+最长不重复字符的字符串，用双指针+set可以完成
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.empty()) return 0;
+        int n = s.size();
+        unordered_set<int> st;
+        int l = 0, r = 0;
+        int ans = 0;
+        while(l < n){
+            if(l != 0){
+                st.erase(s[l-1] - 'a');
+                l++;
+            } else {
+                l++;
+            }
+            while(r < n && st.count(s[r] - 'a') == 0){
+                st.insert(s[r] - 'a');
+                ans = max(ans, (int)st.size());
+                r++;
+            }
+        }
+        return ans;
+    }
+};
+*/
