@@ -5,6 +5,7 @@
  */
 #include <iostream>
 #include <vector>
+#include <stack>
 
 /* 
     有两种优化手法，一种是三值取中，还有一种是当数组较小的时候用insert sort替代
@@ -51,9 +52,37 @@ void quicksort(std::vector<int>& vec){
     mysort(vec, 0, vec.size() - 1);
 }
 
+
+void mysort2(std::vector<int>& vec, int left, int right){
+    std::stack<int> s;
+    s.push(left);
+    s.push(right); 
+    while(!s.empty()){
+        int r = s.top();s.pop();
+        int l = s.top();s.pop();
+        if(l < r){
+            int k = partition(vec, l, r);
+            if(k > l){
+                s.push(l);
+                s.push(k-1);
+            }
+            if(k < r){
+                s.push(k+1);
+                s.push(r);
+            }
+        }
+    }
+    
+}
+
+//非递归quicksort
+void quicksort_2(std::vector<int>& vec){
+    mysort2(vec, 0, vec.size()-1);
+}
+
 int main(){
     std::vector<int> vec{2,4,6,1,56,1,6};
-    quicksort(vec);
+    quicksort_2(vec);
     for(auto a : vec){
         std::cout << a << " ";
     }

@@ -19,4 +19,33 @@ public:
         }
         return pq.top();
     }
+
+    /* 
+    快排思路    
+    int partition(vector<int>& vec, int l, int r){
+        if(l >= r) return l;
+        int tmp = vec[l];
+        while(l < r){
+            while(l < r && vec[r] >= tmp) r--;
+            vec[l] = vec[r];
+            while(l < r && vec[l] <= tmp) l++;
+            vec[r] = vec[l];
+        }
+        vec[l] = tmp;
+        return l;
+    }
+    int findKthLargest(vector<int>& nums, int k) {
+        int n = nums.size();
+        int l = 0, r = n-1;
+        int tmp = partition(nums, l, r);
+        while(tmp != n-k){
+            if(tmp > n-k){
+                tmp = partition(nums, l, tmp-1);
+            } else {
+                tmp = partition(nums, tmp+1, r);
+            }
+        }
+        return nums[tmp];
+    }
+    */
 };
