@@ -1,0 +1,12 @@
+{
+    "fileheader.customMade": {
+        "Description": "", // 文件创建时间(不变)
+        "Author": "haha_giraffe", // 文件最后编辑者
+        "Date": "Do not edit" // 文件最后编辑时间
+    },
+    "files.associations": {
+        "vector": "cpp",
+        "string": "cpp",
+        "iostream": "cpp"
+    }
+}
